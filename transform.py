@@ -9,11 +9,14 @@ OUTPUT = Path("data/transformed/events.csv")
 def main():
     df = pd.read_csv(INPUT)
 
-    df["timestamp"] = pd.to_datetime(df["timestamp"])
+    timestamps = pd.to_datetime(df["timestamp"])
 
-    df["date"] = (
-        df["timestamp"]
-        .dt.strftime("%Y-%m-%d")
+    df["timestamp"] = timestamps.dt.strftime(
+        "%Y-%m-%dT%H:%M:%S"
+    )
+
+    df["date"] = timestamps.dt.strftime(
+        "%Y-%m-%d"
     )
 
     OUTPUT.parent.mkdir(

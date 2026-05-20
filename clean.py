@@ -26,6 +26,8 @@ def main():
 
     df = df[df["duration_seconds"] > 0]
 
+    df['duration_seconds'] = df['duration_seconds'].astype(int)
+
     df["timestamp"] = pd.to_datetime(
         df["timestamp"],
         errors="coerce",

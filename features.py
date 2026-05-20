@@ -18,6 +18,12 @@ def main():
 
     df["weekday"] = dates.dt.day_name()
 
+    timestamps = pd.to_datetime(df["timestamp"])
+
+    df["timestamp"] = timestamps.dt.strftime(
+        "%Y-%m-%dT%H:%M:%S"
+    )
+
     OUTPUT.parent.mkdir(
         parents=True,
         exist_ok=True,
